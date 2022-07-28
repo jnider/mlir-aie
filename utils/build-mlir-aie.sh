@@ -31,6 +31,8 @@ LLVM_BUILD_DIR=`realpath $1`
 BUILD_DIR=${3:-"build"}
 INSTALL_DIR=${4:-"install"}
 
+elfutils_dir=${ELFUTILS_DIR:-../elfutils}
+
 mkdir -p $BUILD_DIR
 mkdir -p $INSTALL_DIR
 cd $BUILD_DIR
@@ -43,6 +45,7 @@ cmake -GNinja\
     -DMLIR_DIR=${LLVM_BUILD_DIR}/lib/cmake/mlir \
     -DCMAKE_MODULE_PATH=${CMAKEMODULES_DIR}/modulesXilinx \
     -DCMAKE_INSTALL_PREFIX="../${INSTALL_DIR}" \
+    -DELFUTILS_DIR="${elfutils_dir}" \
     -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_ENABLE_ASSERTIONS=ON \
     "-DAIE_RUNTIME_TARGETS=x86_64;aarch64" \

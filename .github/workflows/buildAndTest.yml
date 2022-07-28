@@ -123,6 +123,9 @@ jobs:
       - name: Install libboost
         run: apt-get install -y libboost-all-dev
 
+      - name: Install necessary build tools for libelf
+        run: sudo apt install -y autoconf flex bison gawk autopoint
+
       - name: Install Python and other packages
         # Install cmake here to get the latest version to compile
         # LLVM. The Ubuntu 20.04 cmake version is only 3.16.3
@@ -163,6 +166,9 @@ jobs:
 
       - name: Build and install LLVM
         run: utils/build-llvm.sh
+
+      - name: Build and install libelf
+        run: utils/clone-build-elfutils.sh
 
       # Build the repo test target in debug mode to build and test.
       - name: Build and test (Assert)

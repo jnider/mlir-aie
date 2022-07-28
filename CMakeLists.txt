@@ -132,6 +132,7 @@ include_directories(${MLIR_INCLUDE_DIRS})
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_BINARY_DIR}/include)
 include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${ELFUTILS_DIR}/libelf)
 add_definitions(${LLVM_DEFINITIONS})
 
 # Make sure we generate the headers

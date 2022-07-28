@@ -22,6 +22,12 @@ install(TARGETS aie-translate
   RUNTIME DESTINATION ${LLVM_TOOLS_INSTALL_DIR}
   COMPONENT aie-translate)
 
+add_library(libelf STATIC IMPORTED)
+set_target_properties(libelf PROPERTIES
+	INTERFACE_INCLUDE_DIRECTORIES "${ELFUTILS_DIR}/libelf"
+	IMPORTED_LOCATION "${ELFUTILS_DIR}/libelf/libelf.a"
+)
+
 add_dependencies(aie-translate AIETargets)
 llvm_update_compile_flags(aie-translate)
 target_link_libraries(aie-translate
@@ -41,4 +47,5 @@ target_link_libraries(aie-translate
   MLIRTargetAIEVecCpp
   MLIRTargetLLVMIRExport
   MLIRTargetLLVMIRImport
+  libelf
   )
